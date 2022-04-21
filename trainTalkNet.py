@@ -7,7 +7,7 @@ from talkNet import talkNet
 def main():
     # The structure of this code is learnt from https://github.com/clovaai/voxceleb_trainer
     warnings.filterwarnings("ignore")
-
+######
     parser = argparse.ArgumentParser(description = "TalkNet Training")
     # Training details
     parser.add_argument('--lr',           type=float, default=0.0001,help='Learning rate')
