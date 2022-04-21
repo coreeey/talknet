@@ -19,7 +19,7 @@ warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser(description = "TalkNet Demo or Columnbia ASD Evaluation")
 
-parser.add_argument('--videoName',             type=str, default="002",   help='Demo video name')
+parser.add_argument('--videoName',             type=str, default="example",   help='Demo video name')
 parser.add_argument('--videoFolder',           type=str, default="demo",  help='Path for inputs, tmps and outputs')
 parser.add_argument('--pretrainModel',         type=str, default="pretrain_TalkSet.model",   help='Path for the pretrained TalkNet model')
 
@@ -31,7 +31,7 @@ parser.add_argument('--minFaceSize',           type=int,   default=1,    help='M
 parser.add_argument('--cropScale',             type=float, default=0.40, help='Scale bounding box')
 
 parser.add_argument('--start',                 type=int, default=0,   help='The start time of the video')
-parser.add_argument('--duration',              type=int, default=10,  help='The duration of the video, when set as 0, will extract the whole video')
+parser.add_argument('--duration',              type=int, default=0,  help='The duration of the video, when set as 0, will extract the whole video')
 
 parser.add_argument('--evalCol',               dest='evalCol', action='store_true', help='Evaluate on Columnbia dataset')
 parser.add_argument('--colSavePath',           type=str, default="/data08/col",  help='Path for inputs, tmps and outputs')
@@ -273,7 +273,7 @@ def visualization(tracks, scores, args):
 		for face in faces[fidx]:
 			clr = colorDict[int((face['score'] >= 0))]
 			txt = round(face['score'], 1)
-			cv2.rectangle(image, (int(face['x']-face['s']), int(face['y']-face['s'])), (int(face['x']+face['s']), int(face['y']+face['s'])),(0,clr,255-clr),10)
+			cv2.rectangle(image, (int(face['x']-face['s']), int(face['y']-face['s'])), (int(face['x']+face['s']), int(face['y']+face['s'])),(0,clr,255-clr),5)
 			cv2.putText(image,'%s'%(txt), (int(face['x']-face['s']), int(face['y']-face['s'])), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,clr,255-clr),5)
 		vOut.write(image)
 	vOut.release()
